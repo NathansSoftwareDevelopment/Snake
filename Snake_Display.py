@@ -12,4 +12,4 @@ gameActive = True
 while gameActive:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            alive = False
+            gameActive = False
