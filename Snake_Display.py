@@ -1,7 +1,11 @@
 import pygame
 
 pygame.init()
-display = pygame.display.set_mode((1920, 1080))
+
+# Display Dimensions (will be changed to automatically detect screen size later)
+displayHorizontal = 1920
+displayVertical = 1080
+display = pygame.display.set_mode((displayHorizontal, displayVertical))
 
 gameActive = True
 
