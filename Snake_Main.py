@@ -1,3 +1,5 @@
+import pygame
+
 import Snake_Display
 
 
@@ -16,8 +18,13 @@ def main():
         for event in myGame.event.get():
             if event.type == myGame.QUIT:
                 gameOpen = False
+            
+            # Using the "and" keyword to prevent an error when accessing a 'key' method of an event that does not have a 'key' method
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                gameActive = not gameActive
+                print(gameActive)
+            
         myGame.display.update()
-    
 
 if __name__ == "__main__":
     main()
