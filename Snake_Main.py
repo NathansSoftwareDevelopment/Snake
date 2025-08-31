@@ -28,7 +28,7 @@ def main():
 
 # Uses a linked list of coordinates to represent the snake
 class snakeNode:
-    def __init__(self, coordinates):
+    def __init__(self, coordinates: list[int, int]) -> None:
         self.coordinates = coordinates
         self.next = None
 class snake:
