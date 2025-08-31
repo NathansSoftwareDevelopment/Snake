@@ -26,5 +26,14 @@ def main():
             
         myGame.display.update()
 
+# Uses a linked list of coordinates to represent the snake
+class snakeNode:
+    def __init__(self, coordinates):
+        self.coordinates = coordinates
+        self.next = None
+class snake:
+    def __init__(self):
+        self.head = None
+
 if __name__ == "__main__":
     main()
