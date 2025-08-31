@@ -20,11 +20,3 @@ def makeGrid() -> None:
         for y in range (0, gridVertical):
             box: pygame.Rect = pygame.Rect(x*boxHorizontal, y*boxVertical, boxHorizontal, boxVertical)
             pygame.draw.rect(display, whiteRGB, box, 1)
-
-
-while gameActive:
-    makeGrid()
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            gameActive = False
-    pygame.display.update()
