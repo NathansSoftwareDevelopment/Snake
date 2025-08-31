@@ -32,8 +32,8 @@ class snakeNode:
         self.coordinates = coordinates
         self.next = None
 class snake:
-    def __init__(self):
-        self.head = None
+    def __init__(self) -> None:
+        self.head: snakeNode = snakeNode([0, 0])
 
 if __name__ == "__main__":
     main()
