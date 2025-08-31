@@ -26,6 +26,12 @@ def makeGrid() -> None:
 
 # Display the Snake
 greenRGB: tuple = (0, 255, 0)
+def displaySnake(snake) -> None:
+    currentNode = snake.head
+    displaySnakeNode(currentNode)
+    while currentNode.next:
+        displaySnakeNode(currentNode)
+        currentNode = currentNode.next
 def displaySnakeNode(snakeNode) -> None:
     xCoordinate = snakeNode.coordinates[0]
     yCoordinate = snakeNode.coordinates[1]
