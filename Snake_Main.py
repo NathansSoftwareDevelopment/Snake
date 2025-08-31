@@ -34,6 +34,12 @@ class snakeNode:
 class snake:
     def __init__(self) -> None:
         self.head: snakeNode = snakeNode([0, 0])
+    def growTail(self, coordinates: list[int, int]) -> None:
+        tailNode: snakeNode = snakeNode(coordinates)
+        currentNode: snakeNode = self.head
+        while currentNode.next:
+            currentNode: snakeNode = currentNode.next
+        currentNode.next = tailNode
 
 if __name__ == "__main__":
     main()
