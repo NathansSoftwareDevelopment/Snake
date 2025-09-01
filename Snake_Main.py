@@ -76,6 +76,7 @@ class snake:
                 self.head.coordinates[eastWestIndex] += southEastChange
             case _:
                 return
+        Snake_Display.clearPixel(originalCoordinates[0], originalCoordinates[1])
 
 if __name__ == "__main__":
     main()
