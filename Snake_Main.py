@@ -35,6 +35,8 @@ def main():
                 movementDirection = event.key
 
         clock.tick(framesPerSecond)
+        mySnake.move(movementDirection)
+
         Snake_Display.displaySnake(mySnake)
         myGame.display.update()
 
@@ -46,12 +48,32 @@ class snakeNode:
 class snake:
     def __init__(self) -> None:
         self.head: snakeNode = snakeNode([0, 0])
+    
     def growTail(self, coordinates: list[int, int]) -> None:
         tailNode: snakeNode = snakeNode(coordinates)
         currentNode: snakeNode = self.head
         while currentNode.next:
             currentNode: snakeNode = currentNode.next
         currentNode.next = tailNode
+    
+    def move(self, direction: pygame.key) -> None:
+        originalCoordinates: list[int, int] = self.head.coordinates
+
+        northSouthIndex: int = 1
+        eastWestIndex: int = 0
+        southEastChange: int = 1
+        northWestChange: int = -1
+        match direction:
+            case pygame.K_w:
+                self.head.coordinates[northSouthIndex] += northWestChange
+            case pygame.K_a:
+                self.head.coordinates[eastWestIndex] += northWestChange
+            case pygame.K_s:
+                self.head.coordinates[northSouthIndex] += southEastChange
+            case pygame.K_d:
+                self.head.coordinates[eastWestIndex] += southEastChange
+            case _:
+                return
 
 if __name__ == "__main__":
     main()
