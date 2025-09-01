@@ -23,3 +23,16 @@ def makeGrid() -> None:
             box: pygame.Rect = pygame.Rect(x*boxHorizontal, y*boxVertical, boxHorizontal, boxVertical)
             pygame.grid[x][y] = box
             pygame.draw.rect(display, whiteRGB, box, 1)
+
+# Display the Snake
+greenRGB: tuple = (0, 255, 0)
+def displaySnake(snake) -> None:
+    currentNode = snake.head
+    displaySnakeNode(currentNode)
+    while currentNode.next:
+        displaySnakeNode(currentNode)
+        currentNode = currentNode.next
+def displaySnakeNode(snakeNode) -> None:
+    xCoordinate = snakeNode.coordinates[0]
+    yCoordinate = snakeNode.coordinates[1]
+    pygame.draw.rect(display, greenRGB, pygame.grid[xCoordinate][yCoordinate], 1000)

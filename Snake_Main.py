@@ -14,6 +14,7 @@ def main():
 
     # Main loop
     myGame = Snake_Display.pygame
+    mySnake: snake = snake()
     while gameOpen:
         for event in myGame.event.get():
             if event.type == myGame.QUIT:
@@ -23,8 +24,23 @@ def main():
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 gameActive = not gameActive
                 print(gameActive)
-            
+        Snake_Display.displaySnake(mySnake)
         myGame.display.update()
+
+# Uses a linked list of coordinates to represent the snake
+class snakeNode:
+    def __init__(self, coordinates: list[int, int]) -> None:
+        self.coordinates = coordinates
+        self.next = None
+class snake:
+    def __init__(self) -> None:
+        self.head: snakeNode = snakeNode([0, 0])
+    def growTail(self, coordinates: list[int, int]) -> None:
+        tailNode: snakeNode = snakeNode(coordinates)
+        currentNode: snakeNode = self.head
+        while currentNode.next:
+            currentNode: snakeNode = currentNode.next
+        currentNode.next = tailNode
 
 if __name__ == "__main__":
     main()
