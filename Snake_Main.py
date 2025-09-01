@@ -15,6 +15,8 @@ def main():
     # Main loop
     myGame = Snake_Display.pygame
     mySnake: snake = snake()
+    clock = myGame.time.Clock()
+    framesPerSecond: int = 4
     while gameOpen:
         for event in myGame.event.get():
             if event.type == myGame.QUIT:
@@ -24,6 +26,7 @@ def main():
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 gameActive = not gameActive
                 print(gameActive)
+        clock.tick(framesPerSecond)
         Snake_Display.displaySnake(mySnake)
         myGame.display.update()
 
