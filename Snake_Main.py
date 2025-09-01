@@ -19,6 +19,8 @@ def main():
     framesPerSecond: int = 4
     movementDirection: pygame.key = pygame.K_d
 
+    Snake_Display.displaySnake(mySnake)
+
     while gameOpen:
         for event in myGame.event.get():
             if event.type == myGame.QUIT:
