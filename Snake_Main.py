@@ -22,10 +22,14 @@ def main():
             if event.type == myGame.QUIT:
                 gameOpen = False
             
-            # Using the "and" keyword to prevent an error when accessing a 'key' method of an event that does not have a 'key' method
-            elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+            # If the event isn't a keystroke then ignore it
+            elif event.type != pygame.KEYDOWN:
+                pass
+            
+            elif event.key == pygame.K_ESCAPE:
                 gameActive = not gameActive
                 print(gameActive)
+
         clock.tick(framesPerSecond)
         Snake_Display.displaySnake(mySnake)
         myGame.display.update()
