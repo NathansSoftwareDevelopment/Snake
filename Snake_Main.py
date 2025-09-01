@@ -14,8 +14,8 @@ def main():
 
     # Main loop
     myGame = Snake_Display.pygame
+    mySnake: snake = snake()
     while gameOpen:
-        mySnake: snake = snake()
         for event in myGame.event.get():
             if event.type == myGame.QUIT:
                 gameOpen = False
