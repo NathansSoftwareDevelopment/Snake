@@ -42,6 +42,8 @@ def clearPixel(xCoordinate: int, yCoordinate: int):
     pygame.draw.rect(display, whiteRGB, pygame.grid[xCoordinate][yCoordinate], 1)
 
 redRGB: tuple = (255, 0, 0)
-def displayApple(xCoordinate: int, yCoordinate: int):
+def displayApple(coordinates: list[int, int]):
+    xCoordinate: int = coordinates[0]
+    yCoordinate: int = coordinates[1]
     pygame.draw.rect(display, redRGB, pygame.grid[xCoordinate][yCoordinate])
     pygame.draw.rect(display, whiteRGB, pygame.grid[xCoordinate][yCoordinate], 1)
