@@ -77,6 +77,21 @@ class snake:
             case _:
                 return
         Snake_Display.clearPixel(originalCoordinates[0], originalCoordinates[1])
+        
+        if self.head.next:
+            self.moveTail(originalCoordinates)
+    def moveTail(self, headCoordinates: list[int, int]) -> None:
+        # Move each node to the previous position of the node ahead of it
+        oldPartCoordinates = headCoordinates.copy()
+        currentNode: snakeNode = self.head.next
+        while currentNode:
+            currentPartCoordinates: list[int, int] = currentNode.coordinates
+            currentNode.coordinates = oldPartCoordinates
+            oldPartCoordinates = currentPartCoordinates
+            
+            currentNode = currentNode.next
+        Snake_Display.clearPixel(oldPartCoordinates[0], oldPartCoordinates[1])
+        
 
 if __name__ == "__main__":
     main()
