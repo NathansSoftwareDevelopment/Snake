@@ -59,7 +59,7 @@ class snake:
         currentNode.next = tailNode
     
     def move(self, direction: pygame.key) -> None:
-        originalCoordinates: list[int, int] = self.head.coordinates
+        originalCoordinates: list[int, int] = self.head.coordinates.copy()
 
         northSouthIndex: int = 1
         eastWestIndex: int = 0
