@@ -37,12 +37,12 @@ def displaySnakeNode(snakeNode) -> None:
     pygame.draw.rect(display, greenRGB, pygame.grid[xCoordinate][yCoordinate], 1000)
 
 blackRGB: tuple = (0, 0, 0)
-def clearPixel(xCoordinate: int, yCoordinate: int):
+def clearPixel(xCoordinate: int, yCoordinate: int) -> None:
     pygame.draw.rect(display, blackRGB, pygame.grid[xCoordinate][yCoordinate])
     pygame.draw.rect(display, whiteRGB, pygame.grid[xCoordinate][yCoordinate], 1)
 
 redRGB: tuple = (255, 0, 0)
-def displayApple(coordinates: list[int]):
+def displayApple(coordinates: list[int]) -> None:
     xCoordinate: int = coordinates[0]
     yCoordinate: int = coordinates[1]
     pygame.draw.rect(display, redRGB, pygame.grid[xCoordinate][yCoordinate])

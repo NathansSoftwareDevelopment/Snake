@@ -5,7 +5,7 @@ import pygame
 import Snake_Display
 
 
-def main():
+def main() -> None:
     # Boolean to determine if the application is running
     gameOpen: bool = True
     # Boolean to determine if the game is running (as opposed to paused)
