@@ -42,6 +42,9 @@ def main():
 
         clock.tick(framesPerSecond)
         mySnake.move(movementDirection)
+        if mySnake.head.coordinates == appleCoordinates:
+            appleCoordinates = spawnApple(mySnake)
+            Snake_Display.displayApple(appleCoordinates)
 
         Snake_Display.displaySnake(mySnake)
         myGame.display.update()
