@@ -35,7 +35,7 @@ def main():
             elif event.type != pygame.KEYDOWN:
                 pass
             
-            elif event.key == pygame.K_ESCAPE:
+            elif event.key in [pygame.K_ESCAPE, pygame.K_SPACE]:
                 gamePaused = not gamePaused
                 print(gamePaused)
             elif gamePaused: # If the game is paused don't register other keystrokes
