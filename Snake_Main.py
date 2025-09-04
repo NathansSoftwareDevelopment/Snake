@@ -24,6 +24,7 @@ def main():
     appleCoordinates: list[int] = spawnApple(mySnake)
     Snake_Display.displayApple(appleCoordinates)
     Snake_Display.displaySnake(mySnake)
+    myGame.display.update()
 
     while gameOpen:
         for event in myGame.event.get():
