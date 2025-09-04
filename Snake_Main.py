@@ -15,9 +15,9 @@ def main() -> None:
     Snake_Display.makeGrid()
 
     # Main loop
-    myGame = Snake_Display.pygame
+    myGame: pygame = Snake_Display.pygame
     mySnake: snake = snake()
-    clock = myGame.time.Clock()
+    clock: pygame.time.Clock = myGame.time.Clock()
     framesPerSecond: int = 4
     movementDirection: int = pygame.K_d
     validMovementDirections: list[int] = [
@@ -105,7 +105,7 @@ class snake:
             self.moveTail(originalCoordinates)
     def moveTail(self, headCoordinates: list[int]) -> None:
         # Move each node to the previous position of the node ahead of it
-        oldPartCoordinates = headCoordinates.copy()
+        oldPartCoordinates: list[int] = headCoordinates.copy()
         currentNode: snakeNode = self.head.next
         while currentNode:
             currentPartCoordinates: list[int] = currentNode.coordinates
@@ -124,8 +124,8 @@ class snake:
 
 # Make a list for every valid coordinate, remove each of the snake's node's locations from the list, pick an empty coordinate
 def spawnApple(inputSnake: snake) -> list[int]:
-    coordinateList = [[x, y] for x in range(Snake_Display.gridHorizontal) for y in range(Snake_Display.gridVertical)]
-    currentNode = inputSnake.head
+    coordinateList: list[list[int]] = [[x, y] for x in range(Snake_Display.gridHorizontal) for y in range(Snake_Display.gridVertical)]
+    currentNode: snakeNode = inputSnake.head
     while currentNode:
         coordinateList.remove(currentNode.coordinates)
         currentNode = currentNode.next
