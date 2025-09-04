@@ -19,8 +19,8 @@ def main():
     mySnake: snake = snake()
     clock = myGame.time.Clock()
     framesPerSecond: int = 4
-    movementDirection: pygame.key = pygame.K_d
-    validMovementDirections: list[pygame.key] = [
+    movementDirection: int = pygame.K_d
+    validMovementDirections: list[int] = [
         pygame.K_w,
         pygame.K_a,
         pygame.K_s,
@@ -81,7 +81,7 @@ class snake:
             currentNode: snakeNode = currentNode.next
         currentNode.next = tailNode
     
-    def move(self, direction: pygame.key) -> None:
+    def move(self, direction: int) -> None:
         originalCoordinates: list[int, int] = self.head.coordinates.copy()
 
         northSouthIndex: int = 1
