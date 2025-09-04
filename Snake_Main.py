@@ -9,7 +9,7 @@ def main():
     # Boolean to determine if the application is running
     gameOpen: bool = True
     # Boolean to determine if the game is running (as opposed to paused)
-    gameActive: bool = False
+    gamePaused: bool = False
 
     # Make the grid for the screen
     Snake_Display.makeGrid()
@@ -36,17 +36,17 @@ def main():
                 pass
             
             elif event.key == pygame.K_ESCAPE:
-                gameActive = not gameActive
-                print(gameActive)
-            elif not gameActive: # If the game is paused don't register other keystrokes
+                gamePaused = not gamePaused
+                print(gamePaused)
+            elif gamePaused: # If the game is paused don't register other keystrokes
                 break
 
             elif event.type == pygame.KEYDOWN:
                 movementDirection = event.key
 
-        if not gameActive: # If the game is paused don't do anything
+        if gamePaused: # If the game is paused don't do anything
             continue
-        
+
         oldCoordinates: list[int] = mySnake.getEndCoordinates()
         mySnake.move(movementDirection)
         if mySnake.head.coordinates == appleCoordinates:
