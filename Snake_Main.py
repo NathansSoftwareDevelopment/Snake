@@ -62,6 +62,9 @@ def main() -> None:
 
         Snake_Display.displaySnake(mySnake)
 
+        if mySnake.isSelfColliding():
+            gameOpen = False
+
         clock.tick(framesPerSecond)
         myGame.display.update()
 
