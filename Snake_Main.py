@@ -38,9 +38,15 @@ def main():
             elif event.key == pygame.K_ESCAPE:
                 gameActive = not gameActive
                 print(gameActive)
+            elif not gameActive: # If the game is paused don't register other keystrokes
+                break
+
             elif event.type == pygame.KEYDOWN:
                 movementDirection = event.key
 
+        if not gameActive: # If the game is paused don't do anything
+            continue
+        
         oldCoordinates: list[int] = mySnake.getEndCoordinates()
         mySnake.move(movementDirection)
         if mySnake.head.coordinates == appleCoordinates:
