@@ -5,7 +5,7 @@ import pygame
 import Snake_Display
 
 
-def main():
+def main() -> None:
     # Boolean to determine if the application is running
     gameOpen: bool = True
     # Boolean to determine if the game is running (as opposed to paused)
@@ -15,12 +15,12 @@ def main():
     Snake_Display.makeGrid()
 
     # Main loop
-    myGame = Snake_Display.pygame
+    myGame: pygame = Snake_Display.pygame
     mySnake: snake = snake()
-    clock = myGame.time.Clock()
+    clock: pygame.time.Clock = myGame.time.Clock()
     framesPerSecond: int = 4
-    movementDirection: pygame.key = pygame.K_d
-    validMovementDirections: list[pygame.key] = [
+    movementDirection: int = pygame.K_d
+    validMovementDirections: list[int] = [
         pygame.K_w,
         pygame.K_a,
         pygame.K_s,
@@ -67,22 +67,22 @@ def main():
 
 # Uses a linked list of coordinates to represent the snake
 class snakeNode:
-    def __init__(self, coordinates: list[int, int]) -> None:
+    def __init__(self, coordinates: list[int]) -> None:
         self.coordinates = coordinates
         self.next = None
 class snake:
     def __init__(self) -> None:
         self.head: snakeNode = snakeNode([0, 0])
     
-    def growTail(self, coordinates: list[int, int]) -> None:
+    def growTail(self, coordinates: list[int]) -> None:
         tailNode: snakeNode = snakeNode(coordinates)
         currentNode: snakeNode = self.head
         while currentNode.next:
             currentNode: snakeNode = currentNode.next
         currentNode.next = tailNode
     
-    def move(self, direction: pygame.key) -> None:
-        originalCoordinates: list[int, int] = self.head.coordinates.copy()
+    def move(self, direction: int) -> None:
+        originalCoordinates: list[int] = self.head.coordinates.copy()
 
         northSouthIndex: int = 1
         eastWestIndex: int = 0
@@ -103,12 +103,12 @@ class snake:
         
         if self.head.next:
             self.moveTail(originalCoordinates)
-    def moveTail(self, headCoordinates: list[int, int]) -> None:
+    def moveTail(self, headCoordinates: list[int]) -> None:
         # Move each node to the previous position of the node ahead of it
-        oldPartCoordinates = headCoordinates.copy()
+        oldPartCoordinates: list[int] = headCoordinates.copy()
         currentNode: snakeNode = self.head.next
         while currentNode:
-            currentPartCoordinates: list[int, int] = currentNode.coordinates
+            currentPartCoordinates: list[int] = currentNode.coordinates
             currentNode.coordinates = oldPartCoordinates
             oldPartCoordinates = currentPartCoordinates
             
@@ -124,8 +124,8 @@ class snake:
 
 # Make a list for every valid coordinate, remove each of the snake's node's locations from the list, pick an empty coordinate
 def spawnApple(inputSnake: snake) -> list[int]:
-    coordinateList = [[x, y] for x in range(Snake_Display.gridHorizontal) for y in range(Snake_Display.gridVertical)]
-    currentNode = inputSnake.head
+    coordinateList: list[list[int]] = [[x, y] for x in range(Snake_Display.gridHorizontal) for y in range(Snake_Display.gridVertical)]
+    currentNode: snakeNode = inputSnake.head
     while currentNode:
         coordinateList.remove(currentNode.coordinates)
         currentNode = currentNode.next

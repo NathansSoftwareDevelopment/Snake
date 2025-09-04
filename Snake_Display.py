@@ -10,7 +10,7 @@ display: pygame.display = pygame.display.set_mode((displayHorizontal, displayVer
 gameActive: bool = True
 
 # Make a grid on the display with a number of boxes determined by the gridHorizontal and gridVertical variables
-whiteRGB: tuple = (255, 255, 255)
+whiteRGB: tuple[int, int, int] = (255, 255, 255)
 gridHorizontal: int = 16
 gridVertical: int = 9
 def makeGrid() -> None:
@@ -25,7 +25,7 @@ def makeGrid() -> None:
             pygame.draw.rect(display, whiteRGB, box, 1)
 
 # Display the Snake
-greenRGB: tuple = (0, 255, 0)
+greenRGB: tuple[int, int, int] = (0, 255, 0)
 def displaySnake(snake) -> None:
     currentNode = snake.head
     while currentNode:
@@ -36,13 +36,13 @@ def displaySnakeNode(snakeNode) -> None:
     yCoordinate = snakeNode.coordinates[1]
     pygame.draw.rect(display, greenRGB, pygame.grid[xCoordinate][yCoordinate], 1000)
 
-blackRGB: tuple = (0, 0, 0)
-def clearPixel(xCoordinate: int, yCoordinate: int):
+blackRGB: tuple[int, int, int] = (0, 0, 0)
+def clearPixel(xCoordinate: int, yCoordinate: int) -> None:
     pygame.draw.rect(display, blackRGB, pygame.grid[xCoordinate][yCoordinate])
     pygame.draw.rect(display, whiteRGB, pygame.grid[xCoordinate][yCoordinate], 1)
 
-redRGB: tuple = (255, 0, 0)
-def displayApple(coordinates: list[int, int]):
+redRGB: tuple[int, int, int] = (255, 0, 0)
+def displayApple(coordinates: list[int]) -> None:
     xCoordinate: int = coordinates[0]
     yCoordinate: int = coordinates[1]
     pygame.draw.rect(display, redRGB, pygame.grid[xCoordinate][yCoordinate])
