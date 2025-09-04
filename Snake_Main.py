@@ -67,14 +67,14 @@ def main():
 
 # Uses a linked list of coordinates to represent the snake
 class snakeNode:
-    def __init__(self, coordinates: list[int, int]) -> None:
+    def __init__(self, coordinates: list[int]) -> None:
         self.coordinates = coordinates
         self.next = None
 class snake:
     def __init__(self) -> None:
         self.head: snakeNode = snakeNode([0, 0])
     
-    def growTail(self, coordinates: list[int, int]) -> None:
+    def growTail(self, coordinates: list[int]) -> None:
         tailNode: snakeNode = snakeNode(coordinates)
         currentNode: snakeNode = self.head
         while currentNode.next:
@@ -82,7 +82,7 @@ class snake:
         currentNode.next = tailNode
     
     def move(self, direction: int) -> None:
-        originalCoordinates: list[int, int] = self.head.coordinates.copy()
+        originalCoordinates: list[int] = self.head.coordinates.copy()
 
         northSouthIndex: int = 1
         eastWestIndex: int = 0
@@ -103,12 +103,12 @@ class snake:
         
         if self.head.next:
             self.moveTail(originalCoordinates)
-    def moveTail(self, headCoordinates: list[int, int]) -> None:
+    def moveTail(self, headCoordinates: list[int]) -> None:
         # Move each node to the previous position of the node ahead of it
         oldPartCoordinates = headCoordinates.copy()
         currentNode: snakeNode = self.head.next
         while currentNode:
-            currentPartCoordinates: list[int, int] = currentNode.coordinates
+            currentPartCoordinates: list[int] = currentNode.coordinates
             currentNode.coordinates = oldPartCoordinates
             oldPartCoordinates = currentPartCoordinates
             
