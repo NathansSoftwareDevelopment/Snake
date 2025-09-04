@@ -50,8 +50,8 @@ def main():
 
         Snake_Display.displaySnake(mySnake)
 
-        myGame.display.update()
         clock.tick(framesPerSecond)
+        myGame.display.update()
 
 # Uses a linked list of coordinates to represent the snake
 class snakeNode:
