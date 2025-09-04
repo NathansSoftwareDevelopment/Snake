@@ -20,6 +20,12 @@ def main():
     clock = myGame.time.Clock()
     framesPerSecond: int = 4
     movementDirection: pygame.key = pygame.K_d
+    validMovementDirections: list[pygame.key] = [
+        pygame.K_w,
+        pygame.K_a,
+        pygame.K_s,
+        pygame.K_d
+    ]
 
     appleCoordinates: list[int] = spawnApple(mySnake)
     Snake_Display.displayApple(appleCoordinates)
@@ -41,7 +47,7 @@ def main():
             elif gamePaused: # If the game is paused don't register other keystrokes
                 break
 
-            elif event.type == pygame.KEYDOWN:
+            elif event.key in validMovementDirections:
                 movementDirection = event.key
 
         if gamePaused: # If the game is paused don't do anything
