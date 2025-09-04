@@ -62,6 +62,9 @@ def main() -> None:
 
         Snake_Display.displaySnake(mySnake)
 
+        if mySnake.isSelfColliding():
+            gameOpen = False
+
         clock.tick(framesPerSecond)
         myGame.display.update()
 
@@ -121,6 +124,17 @@ class snake:
             coordinates = currentNode.coordinates.copy()
             currentNode = currentNode.next
         return coordinates
+    
+    # If any of the nodes in the snake share coordinates then they are colliding
+    def isSelfColliding(self) -> bool:
+        allNodeCoordinates: list[list[int]] = []
+        currentNode: snakeNode = self.head
+        while currentNode:
+            if currentNode.coordinates in allNodeCoordinates:
+                return True
+            allNodeCoordinates.append(currentNode.coordinates)
+            currentNode = currentNode.next
+        return False
 
 # Make a list for every valid coordinate, remove each of the snake's node's locations from the list, pick an empty coordinate
 def spawnApple(inputSnake: snake) -> list[int]:
