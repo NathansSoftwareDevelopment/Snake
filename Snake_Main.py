@@ -21,7 +21,8 @@ def main():
     framesPerSecond: int = 4
     movementDirection: pygame.key = pygame.K_d
 
-    appleCoordinates: list[int] = [7, 4]
+    appleCoordinates: list[int] = spawnApple(mySnake)
+    Snake_Display.displayApple(appleCoordinates)
     Snake_Display.displaySnake(mySnake)
 
     while gameOpen:
