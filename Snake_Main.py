@@ -1,3 +1,5 @@
+import random
+
 import pygame
 
 import Snake_Display
@@ -92,6 +94,16 @@ class snake:
             
             currentNode = currentNode.next
         Snake_Display.clearPixel(oldPartCoordinates[0], oldPartCoordinates[1])
+
+# Make a list for every valid coordinate, remove each of the snake's node's locations from the list, pick an empty coordinate
+def spawnApple(inputSnake: snake) -> list[int]:
+    coordinateList = [[x, y] for x in range(Snake_Display.gridHorizontal) for y in range(Snake_Display.gridVertical)]
+    currentNode = inputSnake.head
+    while currentNode:
+        coordinateList.remove(currentNode.coordinates)
+        currentNode = currentNode.next
+    return random.choice(coordinateList)
+        
         
 
 if __name__ == "__main__":
