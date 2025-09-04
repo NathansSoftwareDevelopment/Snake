@@ -1,3 +1,5 @@
+import random
+
 import pygame
 
 import Snake_Display
@@ -19,6 +21,8 @@ def main():
     framesPerSecond: int = 4
     movementDirection: pygame.key = pygame.K_d
 
+    appleCoordinates: list[int] = spawnApple(mySnake)
+    Snake_Display.displayApple(appleCoordinates)
     Snake_Display.displaySnake(mySnake)
 
     while gameOpen:
@@ -36,11 +40,17 @@ def main():
             elif event.type == pygame.KEYDOWN:
                 movementDirection = event.key
 
-        clock.tick(framesPerSecond)
+        oldCoordinates: list[int] = mySnake.getEndCoordinates()
         mySnake.move(movementDirection)
+        if mySnake.head.coordinates == appleCoordinates:
+            mySnake.growTail(oldCoordinates)
+            appleCoordinates = spawnApple(mySnake)
+            Snake_Display.displayApple(appleCoordinates)
 
         Snake_Display.displaySnake(mySnake)
+
         myGame.display.update()
+        clock.tick(framesPerSecond)
 
 # Uses a linked list of coordinates to represent the snake
 class snakeNode:
@@ -91,6 +101,23 @@ class snake:
             
             currentNode = currentNode.next
         Snake_Display.clearPixel(oldPartCoordinates[0], oldPartCoordinates[1])
+    def getEndCoordinates(self) -> list[int]:
+        currentNode: snakeNode = self.head
+        coordinates: list[int]
+        while currentNode:
+            coordinates = currentNode.coordinates.copy()
+            currentNode = currentNode.next
+        return coordinates
+
+# Make a list for every valid coordinate, remove each of the snake's node's locations from the list, pick an empty coordinate
+def spawnApple(inputSnake: snake) -> list[int]:
+    coordinateList = [[x, y] for x in range(Snake_Display.gridHorizontal) for y in range(Snake_Display.gridVertical)]
+    currentNode = inputSnake.head
+    while currentNode:
+        coordinateList.remove(currentNode.coordinates)
+        currentNode = currentNode.next
+    return random.choice(coordinateList)
+        
         
 
 if __name__ == "__main__":
