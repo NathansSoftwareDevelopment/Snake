@@ -24,6 +24,7 @@ def main():
     appleCoordinates: list[int] = spawnApple(mySnake)
     Snake_Display.displayApple(appleCoordinates)
     Snake_Display.displaySnake(mySnake)
+    myGame.display.update()
 
     while gameOpen:
         for event in myGame.event.get():
@@ -49,8 +50,8 @@ def main():
 
         Snake_Display.displaySnake(mySnake)
 
-        myGame.display.update()
         clock.tick(framesPerSecond)
+        myGame.display.update()
 
 # Uses a linked list of coordinates to represent the snake
 class snakeNode:
